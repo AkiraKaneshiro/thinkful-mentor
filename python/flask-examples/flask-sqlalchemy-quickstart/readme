@@ -1,0 +1,8 @@
+ipython
+from app import app, db, User
+
+u = User("sam", "sam@foo.com")
+db.add(u)
+db.commit()
+
+
