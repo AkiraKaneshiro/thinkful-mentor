@@ -7,6 +7,7 @@ Calculator = function(opts) {
     $errorMsg   = $error.find("#msg");
     $answer     = opts.$answer;
     $answerVal  = opts.$answerVal;
+    
     $theForm.on("submit", handleFormSubmit);
 
     function handleFormSubmit(evt) {
