@@ -7,4 +7,4 @@ app = Flask(__name__)
 app.config.from_object("config")
 oid = OpenID(app, os.path.join(basedir, 'tmp'))
 
-from app import views, models
+from app import views

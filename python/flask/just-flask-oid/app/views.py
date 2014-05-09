@@ -36,4 +36,4 @@ identifiers is so important to security.
 @oid.after_login
 def after_login(resp):
     print "in after_login"
-    return "your email is: {}".format(resp.email)
+    return render_template("oid-response.html", email = resp.email)
