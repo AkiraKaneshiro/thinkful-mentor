@@ -1,42 +1,50 @@
 (function(N) {
     var $theForm;
+    var $error;
+    var $answer;
+    var $answerVal;
+    var $a;
+    var $b;
+    var $op;
 
-    function handleFormSubmit() {
-        var a = $theForm.find("input[name=a]").val();
-        var b = $theForm.find("input[name=b]").val();
-        var op = $theForm.find("input[name=op]:checked").val();
-        console.log("a: " + a + "\nb: " + b + "\nop: " + op)
+    function handleFormSubmit(evt) {
+        var a = $a.val();
+        var b = $b.val();
+        var op = $op.filter(":checked").val();
+        calculateResult(a, b, op);
+        evt.preventDefault();
+    }
+
+    function calculateResult(a, b, op) {
         $.ajax({
             url:"/calculate",
             data: {"a":a, "b":b, "op":op},
-            success: handleResponse,
+            success: showResult,
             error: handleError,
             method:"POST"
         })
-        return false;
     }
 
-    function handleResponse(data) {
-        $("#error").hide();
-        $("#answer").show();
-        $("#answer-val").html(data);
-    }
+    function showResult(data) {
+        $error.hide();
+        $answer.show();
+        $answerVal.html(data);
+     }
 
     function handleError(jqxhr, textstatus, errorthrown) {
         $("#error #msg").html(jqxhr.responseText);
         $("#error").show();
     }
 
-    N.subtracterForm = function() {
-        this.init = function(jqelem) {
-            $theForm = jqelem;
-            $theForm.on("submit", handleFormSubmit);
-        };
+    N.Calculator = function(opts) {
+        $theForm    = opts.$theForm;
+        $a          = $theForm.find("input[name=a]")
+        $b          = $theForm.find("input[name=b]")
+        $op         = $theForm.find("input[name=op]")
+        $error      = opts.$error;
+        $answer     = opts.$answer;
+        $answerVal  = opts.$answerVal;
+        $theForm.on("submit", handleFormSubmit);
     }
-
 })(window);
 
-$(document).ready(function() {
-    subtracterForm = new subtracterForm();
-    subtracterForm.init($("form#calculator"));
-});
