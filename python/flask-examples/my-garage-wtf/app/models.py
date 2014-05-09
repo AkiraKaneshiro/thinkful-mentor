@@ -1,14 +1,13 @@
-from app import app
+from app import app, db
 from sqlalchemy import Column, Integer, String
-from database import Base
 
-class Car(Base):
+class Car(db.Model):
     __tablename__='car'
-    id=Column(Integer, primary_key=True)
-    mfg = Column(String(200))
-    model = Column(String(200))
-    color=Column(String(200))
-    year = Column(Integer)
+    id      =   db.Column(Integer, primary_key=True)
+    mfg     =   db.Column(String(200))
+    model   =   db.Column(String(200))
+    color   =   db.Column(String(200))
+    year    =   db.Column(Integer)
 
     def __init__(self, mfg=None, model=None, color=None, year=None):
         self.mfg = mfg
