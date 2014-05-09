@@ -25,15 +25,15 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         session['remember_me'] = form.remember_me.data
-        return oid.try_login(form.openid.data, ask_for = ['nickname', 'email'])
+        return oid.try_login('https://www.google.com/accounts/o8/id', ask_for = ['nickname', 'email'])
         
     return render_template('login.html', 
         title = 'Sign In',
-        form = form,
-        providers = app.config['OPENID_PROVIDERS'])
+        form = form)
 
 @oid.after_login
 def after_login(resp):
+    print "in after_login"
     if resp.email is None or resp.email == "":
         flash('Invalid login. Please try again.')
         return redirect(url_for('login'))
@@ -50,7 +50,7 @@ def after_login(resp):
         remember_me = session['remember_me']
         session.pop('remember_me', None)
     login_user(user, remember = remember_me)
-    return redirect(request.args.get('next') or url_for('index'))
+    return redirect(url_for('index'))
 
 @app.before_request
 def before_request():
