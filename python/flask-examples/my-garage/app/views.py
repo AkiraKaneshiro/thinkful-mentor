@@ -1,6 +1,5 @@
-from app import app
+from app import app, db
 from flask import Flask, request, render_template, redirect
-from database import db_session
 from models import Car
 
 @app.route('/')
@@ -43,7 +42,7 @@ def post_edit_car(id):
     car.model = request.form.get("model")
     car.year = request.form.get("year")
     car.color = request.form.get("color")
-    db_session.commit();
+    db.session.commit();
 
     return redirect("/list_cars")
 
@@ -51,8 +50,8 @@ def post_edit_car(id):
 def delete_car(id):
     car = Car.query.get(id)
     if car:
-        db_session.delete(car)
-        db_session.commit()
+        db.session.delete(car)
+        db.session.commit()
         return redirect("/list_cars")
     else:
         abort(404)
@@ -70,6 +69,6 @@ def post_add_car():
     color = request.form.get("color")
 
     c = Car(mfg=mfg, model=model, year=year, color=color)
-    db_session.add(c)
-    db_session.commit()
+    db.session.add(c)
+    db.session.commit()
     return redirect('/list_cars')
