@@ -36,4 +36,6 @@ identifiers is so important to security.
 @oid.after_login
 def after_login(resp):
     print "in after_login"
-    return render_template("oid-response.html", email = resp.email)
+    return render_template("oid-response.html", 
+        email = resp.email,
+        identity_url = resp.identity_url)
