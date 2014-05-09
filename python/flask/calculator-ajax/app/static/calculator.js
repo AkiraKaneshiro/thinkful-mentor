@@ -1,11 +1,13 @@
-(function(N) {
-    var $theForm;
-    var $error;
-    var $answer;
-    var $answerVal;
-    var $a;
-    var $b;
-    var $op;
+Calculator = function(opts) {
+    $theForm    = opts.$theForm;
+    $a          = $theForm.find("input[name=a]");
+    $b          = $theForm.find("input[name=b]");
+    $op         = $theForm.find("input[name=op]");
+    $error      = opts.$error;
+    $errorMsg   = $error.find("#msg");
+    $answer     = opts.$answer;
+    $answerVal  = opts.$answerVal;
+    $theForm.on("submit", handleFormSubmit);
 
     function handleFormSubmit(evt) {
         var a = $a.val();
@@ -22,7 +24,7 @@
             success: showResult,
             error: handleError,
             method:"POST"
-        })
+        });
     }
 
     function showResult(data) {
@@ -32,19 +34,7 @@
      }
 
     function handleError(jqxhr, textstatus, errorthrown) {
-        $("#error #msg").html(jqxhr.responseText);
-        $("#error").show();
+        $errorMsg.html(jqxhr.responseText);
+        $error.show();
     }
-
-    N.Calculator = function(opts) {
-        $theForm    = opts.$theForm;
-        $a          = $theForm.find("input[name=a]")
-        $b          = $theForm.find("input[name=b]")
-        $op         = $theForm.find("input[name=op]")
-        $error      = opts.$error;
-        $answer     = opts.$answer;
-        $answerVal  = opts.$answerVal;
-        $theForm.on("submit", handleFormSubmit);
-    }
-})(window);
-
+};
