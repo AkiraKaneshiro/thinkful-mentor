@@ -1,6 +1,5 @@
-from app import app
+from app import app, db
 from flask import Flask, request, render_template, redirect
-from database import db_session
 from models import Message
 
 @app.route('/')
@@ -14,10 +13,10 @@ def add_message():
     if not txt:
         abort(500)
     m = Message(txt)
-    db_session.add(m)
-    db_session.commit()
+    db.session.add(m)
+    db.session.commit()
     return redirect('/')
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):
-    db_session.remove()
+    db.session.remove()
