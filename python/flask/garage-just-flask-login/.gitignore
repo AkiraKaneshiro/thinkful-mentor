@@ -1,4 +1,5 @@
 venv
 tmp
 *.pyc
-secrets
+.env
+.anvil
