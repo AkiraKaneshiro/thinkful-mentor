@@ -1,1 +1,1 @@
-a super simple app that has a database.  just post a message.
+A super simple app that has a database.  just post a message.

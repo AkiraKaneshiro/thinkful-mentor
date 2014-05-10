@@ -1,12 +1,7 @@
-Here are some Flask apps.
+Here are some toy flask applications that demonstrate individually, various techniques used in web applications.
 
-General notes to get these running:
-+ They all use the same requirements.txt file, which is in the same folder
-as this readme.
+## FAQ
+<i>What is the <b>example-env</b> file I see in some of these repositories?</i>
+This might be a hack!  I needed a place to store variables that I didn't want to end up in the git repository, like SECRET_KEY.  What I do is copy example-env to .env, and then add .env to my .gitignore.   I then run 'source .env' to get the environment variables set.
 
-+ Generally, copy example-env if it exists (not all projects have one) to .env, modify it
-for your system, and run 'source .env' to get the environment setup.  You can
-also checkout autoenv.
 
-+ The environment variables in .env will need to be setup as heroku config
-variables for your app.

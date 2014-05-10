@@ -3,3 +3,5 @@
 secrets
 tmp
 .anvil
+venv
+.env

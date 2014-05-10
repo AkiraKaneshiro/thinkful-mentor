@@ -1,6 +1,2 @@
-# I typically use autoenv to set these
-# All the variables here are set up as heroku config variables for deployment.
 export SECRET_KEY=yourkey
-
-# this one is set automatically by heroku for deployed app.
 export DATABASE_URL=postgresql+psycopg2://you@localhost/my_garage

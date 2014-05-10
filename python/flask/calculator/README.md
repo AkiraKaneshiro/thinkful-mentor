@@ -1,1 +1,1 @@
-a simple 2 value calculator
+A simple 2 value calculator.
