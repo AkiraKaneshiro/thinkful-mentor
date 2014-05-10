@@ -1,13 +1,13 @@
+from app import app, db
 from sqlalchemy import Column, Integer, String
-from database import Base
 
-class Message(Base):
+class Message(db.Model):
     __tablename__='message'
-    id=Column(Integer, primary_key=True)
-    txt = Column(String(200))
+    id  =   db.Column(Integer, primary_key=True)
+    txt =   db.Column(String(200))
 
     def __init__(self, txt=None):
         self.txt = txt
 
     def __repr(self):
-        return "<Message {}".format(self.txt)
+        return "<Message {}>".format(self.txt)
