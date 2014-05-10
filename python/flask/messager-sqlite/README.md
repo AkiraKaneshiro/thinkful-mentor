@@ -1,1 +1,1 @@
-a sqllight version of the messager applet.
+a sqllight version of the messager applet.  just post a message.
