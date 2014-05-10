@@ -1,1 +1,0 @@
-A SQLight version of the messager applet.  just post a message.
