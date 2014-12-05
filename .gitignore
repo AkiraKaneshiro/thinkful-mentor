@@ -1,1 +1,12 @@
 *.pyc
+students
+secret.*
+secret.py
+secret
+.env
+*.db
+access
+access.json
+access.*
+*.csv
+scratch
